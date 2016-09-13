@@ -18,6 +18,9 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
+DISTRO="fsl-imx-x11"
+MACHINE="var-som-mx6"
+
 CWD=`pwd`
 PROGNAME="setup-environment"
 exit_message ()
@@ -189,7 +192,7 @@ echo "EXTRA_IMAGE_FEATURES = \" debug-tweaks tools-debug eclipse-debug\"" >> $BU
 echo "IMAGE_INSTALL_append = \" tcf-agent openssh-sftp-server \"" >> $BUILD_DIR/conf/local.conf
 
 echo "BBLAYERS += \" \${BSPDIR}/sources/meta-qt5 \"" >> $BUILD_DIR/conf/bblayers.conf
-echo "BBLAYERS += \" \${BSPDIR}/sources/meta-variscite-mx6 \"" >> $BUILD_DIR/conf/bblayers.conf
+echo "BBLAYERS += \" \${BSPDIR}/sources/meta-tgif \"" >> $BUILD_DIR/conf/bblayers.conf
 
 # Ansync changes
 #
@@ -198,10 +201,6 @@ echo >>$BUILD_DIR/conf/local.conf 'LICENSE_FLAGS_WHITELIST += "commercial"'
 echo >>$BUILD_DIR/conf/local.conf 'POKY_EXTRA_INSTALL += "gst-fluendo-mp3"'
 echo >>$BUILD_DIR/conf/local.conf 'PREFERRED_PROVIDER_jpeg = "libjpeg-turbo"'
 echo >>$BUILD_DIR/conf/local.conf 'PREFERRED_PROVIDER_jpeg-native = "libjpeg-turbo-native"'
-echo >>$BUILD_DIR/conf/local.conf
-echo >>$BUILD_DIR/conf/local.conf 'SOURCE_MIRROR_URL ?= "file:///vol1/user/lee/mirror/"'
-echo >>$BUILD_DIR/conf/local.conf 'INHERIT += "own-mirrors"'
-echo >>$BUILD_DIR/conf/local.conf 'BB_GENERATE_MIRROR_TARBALLS = "1"'
 echo >>$BUILD_DIR/conf/local.conf
 echo >>$BUILD_DIR/conf/local.conf 'EXTRA_IMAGE_FEATURES += "tools-sdk tools-debug tools-testapps"'
 echo >>$BUILD_DIR/conf/local.conf

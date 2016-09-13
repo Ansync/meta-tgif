@@ -5,13 +5,13 @@ YOCTO_ROOT=~/var-som-mx6-yocto-jethro
 
 ANDROID_BUILD_ROOT=~/var_ll_511_210/ll_511_210_build
 ANDROID_IMGS_PATH=${ANDROID_BUILD_ROOT}/out/target/product/var_mx6
-ANDROID_SCRIPTS_PATH=${YOCTO_ROOT}/sources/meta-variscite-mx6/scripts/var_mk_yocto_sdcard/variscite_scripts_android
+ANDROID_SCRIPTS_PATH=${YOCTO_ROOT}/sources/meta-tgif/scripts/var_mk_yocto_sdcard/variscite_scripts_android
 
 TEMP_DIR=./var_tmp
 P1_MOUNT_DIR=${TEMP_DIR}/BOOT-VAR-SOM
 P2_MOUNT_DIR=${TEMP_DIR}/rootfs
 
-${YOCTO_ROOT}/sources/meta-variscite-mx6/scripts/var_mk_yocto_sdcard/var-create-yocto-sdcard.sh "$@"
+${YOCTO_ROOT}/sources/meta-tgif/scripts/var_mk_yocto_sdcard/var-create-yocto-sdcard.sh "$@"
 
 # Parse command line only to get ${node} and ${part}
 moreoptions=1
