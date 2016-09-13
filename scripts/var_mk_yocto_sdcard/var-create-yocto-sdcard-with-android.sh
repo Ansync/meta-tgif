@@ -3,7 +3,7 @@ set -e
 
 YOCTO_ROOT=~/var-som-mx6-yocto-jethro
 
-ANDROID_BUILD_ROOT=~/var_m_601_100/m_601_100_build
+ANDROID_BUILD_ROOT=~/var_ll_511_210/ll_511_210_build
 ANDROID_IMGS_PATH=${ANDROID_BUILD_ROOT}/out/target/product/var_mx6
 ANDROID_SCRIPTS_PATH=${YOCTO_ROOT}/sources/meta-variscite-mx6/scripts/var_mk_yocto_sdcard/variscite_scripts_android
 
@@ -29,65 +29,52 @@ while [ "$moreoptions" = 1 -a $# -gt 0 ]; do
 done
 
 part=""
-if [[ $node == *mmcblk* ]] ; then
-	part="p"
+if [ `echo ${node} | grep -c mmcblk` -ne 0 ]; then
+        part="p"
 fi
 
 echo "=========================================================="
-echo "= Variscite build recovery SD-card V60 utility - Android ="
+echo "= Variscite build recovery SD-card V50 utility - Android ="
 echo "=========================================================="
-
-function mount_parts
-{
-	mkdir -p ${P1_MOUNT_DIR}
-	mkdir -p ${P2_MOUNT_DIR}
-	sync
-	mount ${node}${part}1  ${P1_MOUNT_DIR}
-	mount ${node}${part}2  ${P2_MOUNT_DIR}
-}
-
-function unmount_parts
-{
-	umount ${P1_MOUNT_DIR}
-	umount ${P2_MOUNT_DIR}
-	rm -rf ${TEMP_DIR}
-}
 
 function copy_android
 {
-	echo
-	echo "Copying Android images to /opt/images/"
-	mkdir -p ${P2_MOUNT_DIR}/opt/images/Android
+	mkdir -p ${P2_MOUNT_DIR}/opt/images/Android/Emmc
 
-	cp ${ANDROID_IMGS_PATH}/boot*.img			${P2_MOUNT_DIR}/opt/images/Android/
-	cp ${ANDROID_IMGS_PATH}/recovery*.img			${P2_MOUNT_DIR}/opt/images/Android/
-	pv ${ANDROID_IMGS_PATH}/system.img >			${P2_MOUNT_DIR}/opt/images/Android/system.img
-	cp ${ANDROID_IMGS_PATH}/u-boot-var-imx6-nand.img	${P2_MOUNT_DIR}/opt/images/Android/
-	cp ${ANDROID_IMGS_PATH}/u-boot-var-imx6-sd.img		${P2_MOUNT_DIR}/opt/images/Android/u-boot-var-imx6-mmc.img
-	ln -s /opt/images/Yocto/SPL				${P2_MOUNT_DIR}/opt/images/Android/SPL-nand
-	ln -s /opt/images/Yocto/SPL.mmc				${P2_MOUNT_DIR}/opt/images/Android/SPL-mmc
+	echo "Copying Android to /opt/images/"
+	cp ${ANDROID_IMGS_PATH}/boot*.img			${P2_MOUNT_DIR}/opt/images/Android/Emmc/
+	cp ${ANDROID_IMGS_PATH}/recovery*.img			${P2_MOUNT_DIR}/opt/images/Android/Emmc/
+	pv ${ANDROID_IMGS_PATH}/system.img >			${P2_MOUNT_DIR}/opt/images/Android/Emmc/system.img
+	cp ${ANDROID_IMGS_PATH}/u-boot-var-imx6-nand.img	${P2_MOUNT_DIR}/opt/images/Android/Emmc/
+	cp ${ANDROID_IMGS_PATH}/u-boot-var-imx6-sd.img		${P2_MOUNT_DIR}/opt/images/Android/Emmc/u-boot-var-imx6-mmc.img
 }
 
 function copy_android_scripts
 {
-	echo
-	echo "Copying Android scripts and desktop icons"
-	cp ${ANDROID_SCRIPTS_PATH}/*.sh		${P2_MOUNT_DIR}/usr/bin/
+	echo "Copying Android scripts"
+	cp ${ANDROID_SCRIPTS_PATH}/android-emmc.sh	${P2_MOUNT_DIR}/sbin/
+	cp ${ANDROID_SCRIPTS_PATH}/mkmmc_android.sh	${P2_MOUNT_DIR}/sbin/
 
-	cp ${ANDROID_SCRIPTS_PATH}/*.desktop	${P2_MOUNT_DIR}/usr/share/applications/
+	echo "Copying Android desktop icon"
+	cp ${ANDROID_SCRIPTS_PATH}/android_emmc.desktop	${P2_MOUNT_DIR}/usr/share/applications/ 
+	cp ${ANDROID_SCRIPTS_PATH}/terminalae		${P2_MOUNT_DIR}/usr/bin/
 }
 
-mount_parts
+
+# Mount the partitions
+mkdir -p ${P1_MOUNT_DIR}
+mkdir -p ${P2_MOUNT_DIR}
+sync
+mount ${node}${part}1  ${P1_MOUNT_DIR}
+mount ${node}${part}2  ${P2_MOUNT_DIR}
+
 copy_android
 copy_android_scripts
 
-echo
 echo "Syncing"
 sync | pv -t
-
-unmount_parts
-
-echo
+umount ${P1_MOUNT_DIR}
+umount ${P2_MOUNT_DIR}
+rm -rf ${TEMP_DIR}
 echo "Done"
-
 exit 0

@@ -174,7 +174,6 @@ else
     cp $BUILD_DIR/conf/bblayers.conf.org $BUILD_DIR/conf/bblayers.conf
 fi
 
-
 META_FSL_BSP_RELEASE="${CWD}/sources/meta-fsl-bsp-release/imx/meta-bsp"
 echo "##Freescale Yocto Release layer" >> $BUILD_DIR/conf/bblayers.conf
 echo "BBLAYERS += \" \${BSPDIR}/sources/meta-fsl-bsp-release/imx/meta-bsp \"" >> $BUILD_DIR/conf/bblayers.conf
@@ -191,6 +190,23 @@ echo "IMAGE_INSTALL_append = \" tcf-agent openssh-sftp-server \"" >> $BUILD_DIR/
 
 echo "BBLAYERS += \" \${BSPDIR}/sources/meta-qt5 \"" >> $BUILD_DIR/conf/bblayers.conf
 echo "BBLAYERS += \" \${BSPDIR}/sources/meta-variscite-mx6 \"" >> $BUILD_DIR/conf/bblayers.conf
+
+# Ansync changes
+#
+echo >>$BUILD_DIR/conf/local.conf
+echo >>$BUILD_DIR/conf/local.conf 'LICENSE_FLAGS_WHITELIST += "commercial"'
+echo >>$BUILD_DIR/conf/local.conf 'POKY_EXTRA_INSTALL += "gst-fluendo-mp3"'
+echo >>$BUILD_DIR/conf/local.conf 'PREFERRED_PROVIDER_jpeg = "libjpeg-turbo"'
+echo >>$BUILD_DIR/conf/local.conf 'PREFERRED_PROVIDER_jpeg-native = "libjpeg-turbo-native"'
+echo >>$BUILD_DIR/conf/local.conf
+echo >>$BUILD_DIR/conf/local.conf 'SOURCE_MIRROR_URL ?= "file:///vol1/user/lee/mirror/"'
+echo >>$BUILD_DIR/conf/local.conf 'INHERIT += "own-mirrors"'
+echo >>$BUILD_DIR/conf/local.conf 'BB_GENERATE_MIRROR_TARBALLS = "1"'
+echo >>$BUILD_DIR/conf/local.conf
+echo >>$BUILD_DIR/conf/local.conf 'EXTRA_IMAGE_FEATURES += "tools-sdk tools-debug tools-testapps"'
+echo >>$BUILD_DIR/conf/local.conf
+#
+# end of Ansync changes
 
 cd  $BUILD_DIR
 clean_up
