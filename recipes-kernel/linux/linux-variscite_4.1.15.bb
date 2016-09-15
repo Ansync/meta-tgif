@@ -11,7 +11,7 @@ require recipes-kernel/linux/linux-dtb.inc
 DEPENDS += "lzop-native bc-native"
 
 SRC_URI = "git://github.com/Ansync/kernel-tgif"
-SRCREV = "babad76d12a6e69066a1edc8551ceb4b57334962"
+SRCREV = "043b7a4d40a6db7cb1243550d3debc8c8bee6320"
 
 # SRCBRANCH = "imx-rel_imx_4.1.15_1.1.0_ga-VAR01-beta"
 # LOCALVERSION = "-6QP"
