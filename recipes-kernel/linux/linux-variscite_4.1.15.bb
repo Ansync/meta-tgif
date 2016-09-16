@@ -10,15 +10,10 @@ require recipes-kernel/linux/linux-dtb.inc
 
 DEPENDS += "lzop-native bc-native"
 
-SRC_URI = "git://github.com/Ansync/kernel-tgif"
-SRCREV = "043b7a4d40a6db7cb1243550d3debc8c8bee6320"
-
-# SRCBRANCH = "imx-rel_imx_4.1.15_1.1.0_ga-VAR01-beta"
-# LOCALVERSION = "-6QP"
-# SRCREV = "29913ef00be72bb227f10d325b652c1dabc41d28"
-# KERNEL_SRC ?= "git://github.com/Ansync/kernel-tgif.git;protocol=git"
-# SRC_URI = "${KERNEL_SRC};branch=${SRCBRANCH}"
-# LOCALVERSION = "-1.1.0"
+SRCBRANCH = "master"
+SRCREV = "87cdb356eff19dd05625321022643bb98a4a9821"
+KERNEL_SRC ?= "git://github.com/Ansync/kernel-tgif.git;protocol=git"
+SRC_URI = "${KERNEL_SRC};branch=${SRCBRANCH}"
 
 FSL_KERNEL_DEFCONFIG = "imx_v7_var_defconfig"
 
