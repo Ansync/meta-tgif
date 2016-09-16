@@ -201,7 +201,7 @@ echo >>$BUILD_DIR/conf/local.conf 'LICENSE_FLAGS_WHITELIST += "commercial"'
 echo >>$BUILD_DIR/conf/local.conf 'PREFERRED_PROVIDER_jpeg = "libjpeg-turbo"'
 echo >>$BUILD_DIR/conf/local.conf 'PREFERRED_PROVIDER_jpeg-native = "libjpeg-turbo-native"'
 echo >>$BUILD_DIR/conf/local.conf
-echo >>$BUILD_DIR/conf/local.conf 'IMAGE_FEATURES += "package-mamagement"'
+# echo >>$BUILD_DIR/conf/local.conf 'IMAGE_FEATURES += "package-management"'
 echo >>$BUILD_DIR/conf/local.conf 'EXTRA_IMAGE_FEATURES += "tools-sdk"'
 echo >>$BUILD_DIR/conf/local.conf
 #
