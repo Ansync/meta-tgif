@@ -9,12 +9,11 @@ DEFAULT_ROOTFS_SIZE=3700
 AUTO_FILL_SD=0
 SPARE_SIZE=4
 
-YOCTO_ROOT=~/var-som-mx6-yocto-jethro
-YOCTO_BUILD=${YOCTO_ROOT}/build_x11
-
+YOCTO_ROOT=~/jethro
+YOCTO_BUILD=${YOCTO_ROOT}/build
 
 YOCTO_IMGS_PATH=${YOCTO_BUILD}/tmp/deploy/images/var-som-mx6
-YOCTO_SCRIPTS_PATH=${YOCTO_ROOT}/sources/meta-variscite-mx6/scripts/var_mk_yocto_sdcard/variscite_scripts
+YOCTO_SCRIPTS_PATH=${YOCTO_ROOT}/sources/meta-tgif/scripts/var_mk_yocto_sdcard/variscite_scripts
 
 TEMP_DIR=./var_tmp
 P1_MOUNT_DIR=${TEMP_DIR}/BOOT-VAR-SOM

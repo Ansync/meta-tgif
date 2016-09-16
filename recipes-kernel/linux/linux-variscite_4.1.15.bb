@@ -1,10 +1,8 @@
-#
-#@DESCRIPTION: Linux for Variscite i.MX6Q/Dl/Solo VAR-SOM-MX6
-#@MAINTAINER: Ron Donio <ron.d@variscite.com>
+#@DESCRIPTION: Linux for Variscite i.MX6Q/D/DL/S VAR-SOM-MX6 family
 #
 # http://www.variscite.com
 # support@variscite.com
-#
+
 require recipes-kernel/linux/linux-imx.inc
 require recipes-kernel/linux/linux-dtb.inc
 
