@@ -192,7 +192,7 @@ echo "EXTRA_IMAGE_FEATURES = \" debug-tweaks tools-debug eclipse-debug\"" >> $BU
 echo "IMAGE_INSTALL_append = \" tcf-agent openssh-sftp-server \"" >> $BUILD_DIR/conf/local.conf
 
 echo "BBLAYERS += \" \${BSPDIR}/sources/meta-qt5 \"" >> $BUILD_DIR/conf/bblayers.conf
-echo "BBLAYERS += \" \${BSPDIR}/sources/meta-variscite-mx6 \"" >> $BUILD_DIR/conf/bblayers.conf
+echo "BBLAYERS += \" \${BSPDIR}/sources/meta-tgif \"" >> $BUILD_DIR/conf/bblayers.conf
 
 # Ansync changes
 #
