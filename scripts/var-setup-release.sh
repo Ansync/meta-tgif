@@ -205,6 +205,7 @@ echo >>$BUILD_DIR/conf/local.conf
 echo >>$BUILD_DIR/conf/local.conf 'EXTRA_IMAGE_FEATURES += "tools-sdk"'
 echo >>$BUILD_DIR/conf/local.conf
 #
+sed -i 's/DL_DIR ?= "${BSPDIR}/DL_DIR = "\/vol1\/user\/lee/g' conf/local.conf
 # end of Ansync changes
 
 cd  $BUILD_DIR
